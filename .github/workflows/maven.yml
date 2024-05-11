@@ -23,3 +23,13 @@ jobs:
         
     - name: Test with Maven
       run: mvn -B test
+      
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()      
+      with:
+        files: |
+          # test-results/**/*.trx
+          target/**/TEST-*.xml
+          # test-results/**/*.trx
+          # test-results/**/*.json
